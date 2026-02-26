@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { calculateScores, determineType } from '../calculator';
-import { Answer } from '@/types';
+import { Answer, Dimension, DimensionScore } from '@/types';
 
 describe('calculateScores', () => {
   it('calculates E-I dimension score correctly', () => {
@@ -37,22 +37,22 @@ describe('calculateScores', () => {
 
 describe('determineType', () => {
   it('determines INTJ type from scores', () => {
-    const dimensions = [
-      { dimension: 'EI', score: -50, direction: 'negative' },
-      { dimension: 'SN', score: -60, direction: 'negative' },
-      { dimension: 'TF', score: 70, direction: 'positive' },
-      { dimension: 'JP', score: 80, direction: 'positive' },
+    const dimensions: DimensionScore[] = [
+      { dimension: 'EI' as Dimension, score: -50, direction: 'negative' },
+      { dimension: 'SN' as Dimension, score: -60, direction: 'negative' },
+      { dimension: 'TF' as Dimension, score: 70, direction: 'positive' },
+      { dimension: 'JP' as Dimension, score: 80, direction: 'positive' },
     ];
     const type = determineType(dimensions);
     expect(type).toBe('INTJ');
   });
 
   it('determines ESFP type from scores', () => {
-    const dimensions = [
-      { dimension: 'EI', score: 60, direction: 'positive' },
-      { dimension: 'SN', score: 70, direction: 'positive' },
-      { dimension: 'TF', score: -50, direction: 'negative' },
-      { dimension: 'JP', score: -60, direction: 'negative' },
+    const dimensions: DimensionScore[] = [
+      { dimension: 'EI' as Dimension, score: 60, direction: 'positive' },
+      { dimension: 'SN' as Dimension, score: 70, direction: 'positive' },
+      { dimension: 'TF' as Dimension, score: -50, direction: 'negative' },
+      { dimension: 'JP' as Dimension, score: -60, direction: 'negative' },
     ];
     const type = determineType(dimensions);
     expect(type).toBe('ESFP');

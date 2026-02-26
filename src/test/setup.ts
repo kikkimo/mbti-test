@@ -4,13 +4,13 @@ import * as matchers from '@testing-library/jest-dom/matchers'
 
 expect.extend(matchers)
 
+afterEach(() => {
+  cleanup()
+})
+
 // Extend Vitest's expect with jest-dom matchers
 declare global {
   namespace Vi {
     interface JestAssertion extends jest.Matchers {}
   }
 }
-
-afterEach(() => {
-  cleanup()
-})
