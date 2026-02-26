@@ -1,0 +1,39 @@
+[
+  {
+    "id": "sn-001",
+    "dimension": "SN",
+    "text": "在学习新知识时，我更喜欢",
+    "options": [
+      { "value": 2, "text": "具体的实例和实际操作" },
+      { "value": 1, "text": "偏向具体案例" },
+      { "value": 0, "text": "两者都可以" },
+      { "value": -1, "text": "偏向理论概念" },
+      { "value": -2, "text": "抽象的理论框架" }
+    ]
+  },
+  {
+    "id": "sn-002",
+    "dimension": "SN",
+    "text": "我认为自己是",
+    "options": [
+      { "value": 2, "text": "非常务实的人" },
+      { "value": 1, "text": "比较务实" },
+      { "value": 0, "text": "适中" },
+      { "value": -1, "text": "比较有想象力" },
+      { "value": -2, "text": "非常富有想象力" }
+    ]
+  },
+  {
+    "id": "sn-003",
+    "dimension": "SN",
+    "facet": "concrete",
+    "text": "在解决问题时，我更依赖",
+    "options": [
+      { "value": 2, "text": "过去的经验和已知方法" },
+      { "value": 1, "text": "偏向经验方法" },
+      { "value": 0, "text": "不确定" },
+      { "value": -1, "text": "直觉和灵感" },
+      { "value": -2, "text": "创新的解决方案" }
+    ]
+  }
+]
