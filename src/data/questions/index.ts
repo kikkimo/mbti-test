@@ -1,15 +1,15 @@
 import { Question } from '@/types';
-import eiQuestions from './ei-questions.json';
-import snQuestions from './sn-questions.json';
-import tfQuestions from './tf-questions.json';
-import jpQuestions from './jp-questions.json';
+import eiQuestions from './ei-questions';
+import snQuestions from './sn-questions';
+import tfQuestions from './tf-questions';
+import jpQuestions from './jp-questions';
 
 const allQuestions: Question[] = [
   ...eiQuestions,
   ...snQuestions,
   ...tfQuestions,
   ...jpQuestions,
-] as Question[];
+];
 
 export function getAllQuestions(): Question[] {
   return allQuestions;
@@ -22,5 +22,3 @@ export function getQuestionsByDimension(dimension: string): Question[] {
 export function getQuestionById(id: string): Question | undefined {
   return allQuestions.find(q => q.id === id);
 }
-
-export default allQuestions;
