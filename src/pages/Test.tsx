@@ -1,15 +1,20 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedPage from '@/components/common/AnimatedPage';
 import QuestionCard from '@/components/test/QuestionCard';
 import ProgressBar from '@/components/test/ProgressBar';
 import Button from '@/components/common/Button';
+import FloatingButton from '@/components/test/FloatingButton';
 import { useTestState } from '@/hooks/useTestState';
+import { useSkippedQuestions } from '@/hooks/useSkippedQuestions';
 import { getAllQuestions } from '@/data/questions';
 
 export default function Test() {
   const questions = getAllQuestions();
   const navigate = useNavigate();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   const {
     answers,
     currentQuestionIndex,
@@ -18,6 +23,8 @@ export default function Test() {
     previousQuestion,
     goToQuestion,
   } = useTestState(questions.length);
+
+  const { skippedCount, allAnswered } = useSkippedQuestions(answers, questions.length);
 
   const currentQuestion = questions[currentQuestionIndex];
   const selectedValue = answers[currentQuestion.id];
@@ -55,7 +62,8 @@ export default function Test() {
               Previous
             </Button>
             <span className="text-gray-600">
-              {Object.keys(answers).length} / {questions.length} answered
+              {Object.keys(answers).length} / {questions.length}
+              {skippedCount > 0 && ` (${skippedCount} skipped)`}
             </span>
             {currentQuestionIndex === questions.length - 1 && canFinish ? (
               <Button size="sm" onClick={handleFinish}>
@@ -101,6 +109,12 @@ export default function Test() {
           ))}
         </div>
       </div>
+
+      <FloatingButton
+        skippedCount={skippedCount}
+        allAnswered={allAnswered}
+        onClick={() => setIsDrawerOpen(true)}
+      />
     </AnimatedPage>
   );
 }
