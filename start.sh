@@ -106,17 +106,6 @@ fi
 
 echo ""
 
-# Run unit tests
-print_info "Running unit tests..."
-npm run test > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-    print_success "All unit tests passed"
-else
-    print_warning "Some unit tests failed, but continuing..."
-fi
-
-echo ""
-
 # Check if port 5173 is available
 print_info "Checking if port 5173 is available..."
 if netstat -an 2>/dev/null | grep ":5173" | grep -q LISTEN; then

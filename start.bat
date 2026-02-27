@@ -79,17 +79,6 @@ if exist "dist\" rmdir /s /q dist
 
 echo.
 
-REM Run unit tests
-echo [INFO] Running unit tests...
-call npm run test >nul 2>nul
-if errorlevel 1 (
-    echo [WARNING] Some unit tests failed, but continuing...
-) else (
-    echo [SUCCESS] All unit tests passed
-)
-
-echo.
-
 REM Start development server
 echo [INFO] Starting development server...
 echo.
