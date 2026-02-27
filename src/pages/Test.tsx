@@ -19,8 +19,7 @@ export default function Test() {
   const {
     answers,
     currentQuestionIndex,
-    setAnswer,
-    nextQuestion,
+    selectAnswerWithAutoAdvance,
     previousQuestion,
     goToQuestion,
   } = useTestState(questions.length);
@@ -31,17 +30,10 @@ export default function Test() {
   const selectedValue = answers[currentQuestion.id];
 
   const handleSelect = (value: number) => {
-    setAnswer(currentQuestion.id, value as any);
-    // Auto advance after short delay
-    setTimeout(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        nextQuestion();
-      }
-    }, 300);
+    selectAnswerWithAutoAdvance(currentQuestion.id, value as any);
   };
 
   const handleFinish = () => {
-    // Store answers in session storage for result page
     sessionStorage.setItem('mbti-answers', JSON.stringify(answers));
     navigate('/result');
   };
@@ -52,7 +44,10 @@ export default function Test() {
     <AnimatedPage className="min-h-screen p-6 py-12">
       <div className="max-w-3xl mx-auto">
         <div className="mb-8">
-          <ProgressBar current={currentQuestionIndex + 1} total={questions.length} />
+          <ProgressBar
+            current={currentQuestionIndex + 1}
+            total={questions.length}
+          />
           <div className="flex justify-between items-center mt-4">
             <Button
               variant="outline"
@@ -73,7 +68,7 @@ export default function Test() {
             ) : (
               <Button
                 size="sm"
-                onClick={nextQuestion}
+                onClick={() => goToQuestion(currentQuestionIndex + 1)}
                 disabled={currentQuestionIndex === questions.length - 1}
               >
                 Next
@@ -102,8 +97,8 @@ export default function Test() {
                 index === currentQuestionIndex
                   ? 'bg-primary scale-125'
                   : answers[q.id]
-                  ? 'bg-secondary'
-                  : 'bg-gray-300'
+                  ? 'bg-answered'
+                  : 'bg-unanswered'
               }`}
               aria-label={`Question ${index + 1}`}
             />
