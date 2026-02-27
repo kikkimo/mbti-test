@@ -6,6 +6,7 @@ import QuestionCard from '@/components/test/QuestionCard';
 import ProgressBar from '@/components/test/ProgressBar';
 import Button from '@/components/common/Button';
 import FloatingButton from '@/components/test/FloatingButton';
+import QuestionsDrawer from '@/components/test/QuestionsDrawer';
 import { useTestState } from '@/hooks/useTestState';
 import { useSkippedQuestions } from '@/hooks/useSkippedQuestions';
 import { getAllQuestions } from '@/data/questions';
@@ -114,6 +115,15 @@ export default function Test() {
         skippedCount={skippedCount}
         allAnswered={allAnswered}
         onClick={() => setIsDrawerOpen(true)}
+      />
+
+      <QuestionsDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        questions={questions}
+        answers={answers}
+        currentQuestionId={currentQuestion.id}
+        onQuestionClick={(questionId, index) => goToQuestion(index)}
       />
     </AnimatedPage>
   );
