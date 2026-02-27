@@ -7,6 +7,7 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   type?: 'button' | 'submit';
+  className?: string;
 }
 
 const variants = {
@@ -28,13 +29,14 @@ export default function Button({
   size = 'md',
   disabled = false,
   type = 'button',
+  className = '',
 }: ButtonProps) {
   return (
     <motion.button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${variants[variant]} ${sizes[size]} rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+      className={`${variants[variant]} ${sizes[size]} ${className} rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
     >

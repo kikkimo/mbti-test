@@ -11,6 +11,6 @@ afterEach(() => {
 // Extend Vitest's expect with jest-dom matchers
 declare global {
   namespace Vi {
-    interface JestAssertion extends jest.Matchers {}
+    interface JestAssertion extends jest.Matchers<any, any> {}
   }
 }

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 interface AnimatedPageProps {
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
 const pageVariants = {
@@ -11,9 +12,10 @@ const pageVariants = {
   exit: { opacity: 0, y: -20 },
 };
 
-export default function AnimatedPage({ children, className = '' }: AnimatedPageProps) {
+export default function AnimatedPage({ children, className = '', id }: AnimatedPageProps) {
   return (
     <motion.div
+      id={id}
       className={className}
       initial="initial"
       animate="enter"
