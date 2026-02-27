@@ -1,23 +1,10 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "@vercel/node@3"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html",
-      "has": [
-        {
-          "type": "!static",
-          "not": [
-            { "type": "static" }
-          ]
-        }
-      ]
+      "destination": "/index.html"
     }
   ],
   "headers": [
