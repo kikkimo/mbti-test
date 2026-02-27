@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
+import { decodeBase64 } from '@/lib/base64';
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,11 +10,12 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Missing shareId' }, { status: 400 });
     }
 
-    const result = await kv.get(`mbti:${shareId}`);
-
-    if (!result) {
-      return NextResponse.json({ error: 'Result not found' }, { status: 404 });
+    // Decode data from URL
+    const data = searchParams.get('data');
+    if (!data) {
+      return NextResponse.json({ error: 'Missing data' }, { status: 400 });
     }
+    const result = JSON.parse(decodeBase64(data));
 
     return NextResponse.json(result);
   } catch (error) {
