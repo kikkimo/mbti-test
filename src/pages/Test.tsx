@@ -123,7 +123,7 @@ export default function Test() {
         questions={questions}
         answers={answers}
         currentQuestionId={currentQuestion.id}
-        onQuestionClick={(questionId, index) => goToQuestion(index)}
+        onQuestionClick={(_questionId, index) => goToQuestion(index)}
       />
     </AnimatedPage>
   );

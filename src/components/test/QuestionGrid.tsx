@@ -55,7 +55,7 @@ export default function QuestionGrid({
       initial="hidden"
       animate="visible"
     >
-      {dimensionQuestions.map((question, index) => {
+      {dimensionQuestions.map((question) => {
         const isAnswered = answers[question.id] !== undefined;
         const isCurrent = question.id === currentQuestionId;
         const questionNumber = questions.indexOf(question) + 1;
