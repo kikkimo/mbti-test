@@ -6,7 +6,7 @@ export function calculateScores(answers: Answer[]): Omit<TestResult, 'id' | 'typ
   const answerMap = new Map(answers.map(a => [a.questionId, a.value]));
 
   // Calculate dimension scores
-  const dimensionScores: DimensionScore[] = ['EI', 'SN', 'TF', 'JP'].map(dimension => {
+  const dimensionScores: DimensionScore[] = (['EI', 'SN', 'TF', 'JP'] as Dimension[]).map(dimension => {
     const dimensionQuestions = questions.filter(q => q.dimension === dimension && !q.facet);
     let totalScore = 0;
 
