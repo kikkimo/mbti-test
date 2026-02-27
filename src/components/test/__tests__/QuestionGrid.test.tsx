@@ -44,7 +44,7 @@ describe('QuestionGrid', () => {
     expect(handleClick).toHaveBeenCalledWith('ei-001', 0);
   });
 
-  it('shows answered questions in green', () => {
+  it('shows answered questions with answered class', () => {
     const answers: Record<string, OptionValue> = { 'ei-001': 1 };
 
     const { container } = render(
@@ -57,10 +57,10 @@ describe('QuestionGrid', () => {
     );
 
     const button1 = screen.getByText('1').closest('button');
-    expect(button1).toHaveClass('bg-green-100');
+    expect(button1).toHaveClass('bg-answered');
   });
 
-  it('shows unanswered questions in red', () => {
+  it('shows unanswered questions with unanswered class', () => {
     const answers: Record<string, OptionValue> = {};
 
     const { container } = render(
@@ -73,10 +73,10 @@ describe('QuestionGrid', () => {
     );
 
     const button1 = screen.getByText('1').closest('button');
-    expect(button1).toHaveClass('bg-red-100');
+    expect(button1).toHaveClass('bg-unanswered');
   });
 
-  it('highlights current question in yellow', () => {
+  it('highlights current question with current class', () => {
     const answers: Record<string, OptionValue> = {};
 
     render(
@@ -90,6 +90,6 @@ describe('QuestionGrid', () => {
     );
 
     const button1 = screen.getByText('1').closest('button');
-    expect(button1).toHaveClass('bg-yellow-400');
+    expect(button1).toHaveClass('bg-current');
   });
 });

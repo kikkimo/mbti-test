@@ -41,10 +41,10 @@ describe('QuestionsDrawer', () => {
       />
     );
 
-    expect(screen.getByText('E - I')).toBeInTheDocument();
-    expect(screen.getByText('S - N')).toBeInTheDocument();
-    expect(screen.getByText('T - F')).toBeInTheDocument();
-    expect(screen.getByText('J - P')).toBeInTheDocument();
+    expect(screen.getByText('E-I')).toBeInTheDocument();
+    expect(screen.getByText('S-N')).toBeInTheDocument();
+    expect(screen.getByText('T-F')).toBeInTheDocument();
+    expect(screen.getByText('J-P')).toBeInTheDocument();
   });
 
   it('shows dimension tabs', () => {
@@ -60,8 +60,8 @@ describe('QuestionsDrawer', () => {
       />
     );
 
-    expect(screen.getByText('E - I')).toBeInTheDocument();
-    expect(screen.getByText('S - N')).toBeInTheDocument();
+    expect(screen.getByText('E-I')).toBeInTheDocument();
+    expect(screen.getByText('S-N')).toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', () => {
