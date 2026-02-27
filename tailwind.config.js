@@ -7,10 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#7C3AED',
-        secondary: '#EC4899',
-        accent: '#06B6D4',
-        background: '#FDF4FF',
+        primary: '#E67E22',
+        secondary: '#D35400',
+        accent: '#F39C12',
+        background: '#FFF8F0',
+        card: '#FFFBF7',
+        text: '#4A3728',
+        answered: '#27AE60',
+        unanswered: '#E5E7EB',
+        current: '#E67E22',
       },
     },
   },
