@@ -9,10 +9,10 @@ interface QuestionGridProps {
   currentQuestionId?: string;
 }
 
-const getStatusColor = (answered: boolean, isCurrent: boolean): string => {
-  if (isCurrent) return 'bg-yellow-400 border-yellow-600 text-yellow-900';
-  if (answered) return 'bg-green-100 border-green-300 text-green-700';
-  return 'bg-red-100 border-red-300 text-red-700';
+const getStatusStyle = (answered: boolean, isCurrent: boolean): string => {
+  if (isCurrent) return 'bg-current text-white ring-2 ring-offset-1 ring-current font-bold';
+  if (answered) return 'bg-answered text-white';
+  return 'bg-unanswered text-gray-500';
 };
 
 const containerVariants = {
@@ -20,21 +20,20 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.02,
+      staggerChildren: 0.015,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { scale: 0, opacity: 0, rotate: -10 },
+  hidden: { scale: 0.8, opacity: 0 },
   visible: {
     scale: 1,
     opacity: 1,
-    rotate: 0,
     transition: {
       type: 'spring',
-      stiffness: 300,
-      damping: 20,
+      stiffness: 400,
+      damping: 25,
     },
   },
 };
@@ -50,7 +49,7 @@ export default function QuestionGrid({
 
   return (
     <motion.div
-      className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-9 gap-2"
+      className="grid grid-cols-9 gap-1.5"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -66,14 +65,13 @@ export default function QuestionGrid({
             variants={itemVariants}
             onClick={() => onQuestionClick(question.id, questions.indexOf(question))}
             className={`
-              aspect-square rounded-lg border-2 font-medium text-sm
-              transition-all duration-200
-              ${getStatusColor(isAnswered, isCurrent)}
-              hover:scale-110 hover:shadow-md
+              aspect-[3/2] rounded-lg text-sm font-medium
+              transition-all duration-150
+              ${getStatusStyle(isAnswered, isCurrent)}
+              hover:opacity-80 hover:scale-105
               active:scale-95
-              ${isCurrent ? 'ring-2 ring-offset-2 ring-yellow-400' : ''}
             `}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             title={`Question ${questionNumber}: ${question.text}`}
           >
