@@ -45,7 +45,7 @@ export default function Test() {
       <div className="max-w-3xl mx-auto">
         <div className="mb-8">
           <ProgressBar
-            current={currentQuestionIndex + 1}
+            answeredCount={Object.keys(answers).length}
             total={questions.length}
           />
           <div className="flex justify-between items-center mt-4">
