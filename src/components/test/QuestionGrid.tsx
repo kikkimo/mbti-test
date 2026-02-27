@@ -26,8 +26,17 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1 },
+  hidden: { scale: 0, opacity: 0, rotate: -10 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    rotate: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 20,
+    },
+  },
 };
 
 export default function QuestionGrid({

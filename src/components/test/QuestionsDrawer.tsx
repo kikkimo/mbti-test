@@ -22,17 +22,35 @@ const dimensionTabs: { dimension: Dimension; label: string; color: string }[] = 
 
 const backdropVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
 };
 
 const drawerVariants = {
-  hidden: { y: '100%' },
+  hidden: {
+    y: '100%',
+    scale: 0.95,
+    opacity: 0,
+  },
   visible: {
     y: 0,
+    scale: 1,
+    opacity: 1,
     transition: {
       type: 'spring',
       damping: 25,
-      stiffness: 300,
+      stiffness: 350,
+      mass: 0.8,
+    },
+  },
+  exit: {
+    y: '100%',
+    scale: 0.95,
+    opacity: 0,
+    transition: {
+      duration: 0.25,
     },
   },
 };
@@ -76,7 +94,7 @@ export default function QuestionsDrawer({
             variants={drawerVariants}
             initial="hidden"
             animate="visible"
-            exit="hidden"
+            exit="exit"
           >
             {/* Drag Handle */}
             <div className="flex justify-center py-3 cursor-pointer" onClick={onClose}>
